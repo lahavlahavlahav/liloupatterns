@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Folding Techniques - Lilou Books</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Assistant:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Assistant', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f5f0e8 0%, #ffe8f0 50%, #f8f0e8 100%);
+        }
+        
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid #FFB6C1;
+        }
+        
+        .language-selector select {
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fefefe;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f5f0e8 0%, #FFB6C1 100%);
+            color: #1a1a1a;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+        
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.4em;
+            font-weight: 400;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro {
+            padding: 60px 40px;
+            text-align: center;
+            background: #f5f0e8;
+        }
+        
+        .intro h2 {
+            font-family: 'Playfair Display', serif;
+            color: #1a1a1a;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        
+        .technique-section {
+            padding: 60px 40px;
+            border-bottom: 1px solid #FFB6C1;
+        }
+        
+        .technique-section:nth-child(odd) {
+            background: linear-gradient(to right, #fefefe 0%, #f5f0e8 100%);
+        }
+        
+        .technique-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .technique-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .technique-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+        
+        .technique-header p {
+            font-size: 1.3em;
+            color: #666;
+        }
+        
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .step-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(255, 182, 193, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #FFB6C1;
+        }
+        
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #FFB6C1 0%, #f5f0e8 100%);
+        }
+        
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 182, 193, 0.3);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #FFB6C1 0%, #f5f0e8 100%);
+            color: #1a1a1a;
+            border-radius: 50%;
+            font-size: 2em;
+            font-weight: bold;
+            line-height: 60px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.3);
+        }
+        
+        .step-animation {
+            font-size: 5em;
+            text-align: center;
+            margin: 20px 0;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .step-image {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .step-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .step-card h4 {
+            color: #1a1a1a;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .materials-section {
+            background: linear-gradient(135deg, #f5f0e8 0%, #ffe8f0 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border-left: 6px solid #FFB6C1;
+        }
+        
+        .materials-section h3 {
+            color: #1a1a1a;
+            font-size: 2em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .material-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border: 2px solid #FFB6C1;
+        }
+        
+        .material-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .material-item-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .comparison {
+            background: white;
+            padding: 60px 40px;
+            margin: 60px 0;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(255, 182, 193, 0.2);
+        }
+        
+        .comparison h3 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            color: #1a1a1a;
+            margin-bottom: 50px;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .comparison-card {
+            padding: 40px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #f5f0e8 0%, #ffffff 100%);
+            border: 3px solid #FFB6C1;
+            transition: all 0.3s ease;
+        }
+        
+        .comparison-card:hover {
+            border-color: #1a1a1a;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 182, 193, 0.3);
+        }
+        
+        .comparison-card h4 {
+            color: #1a1a1a;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .comparison-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #FFB6C1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .comparison-item:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-icon {
+            font-size: 1.5em;
+        }
+        
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .footer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        
+        .footer-content {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        
+        .footer a {
+            color: #FFB6C1;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: #f5f0e8;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            font-size: 1.3em;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: #FFB6C1;
+            color: #1a1a1a;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #f5f0e8;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <span>🌍</span>
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="he">עברית</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
+            <option value="pt">Português</option>
+            <option value="ar">العربية</option>
+            <option value="ru">Русский</option>
+            <option value="ja">日本語</option>
+            <option value="zh">中文</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1 id="mainTitle">Book Folding Techniques</h1>
+            <p id="subtitle">Transform Books into Beautiful Art</p>
+        </div>
+        
+        <div class="intro">
+            <h2 id="introTitle">Two Amazing Techniques</h2>
+        </div>
+        
+        <!-- MARK & FOLD -->
+        <div class="technique-section">
+            <div class="technique-header">
+                <div class="technique-icon">📏</div>
+                <h2 id="markFoldTitle">Mark & Fold</h2>
+                <p id="markFoldDesc">Fold pages precisely without cutting</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-image">
+                        <img src="https://i.imgur.com/placeholder1.jpg" alt="Place ruler on book" style="width: 100%; border-radius: 10px; margin: 15px 0;">
+                    </div>
+                    <h4 id="step1Title">Place Ruler on Right Page</h4>
+                    <p id="step1Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">Position your ruler on the right page following the pattern measurements</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-image">
+                        <img src="https://i.imgur.com/placeholder2.jpg" alt="Mark measurements" style="width: 100%; border-radius: 10px; margin: 15px 0;">
+                    </div>
+                    <h4 id="step2Title">Mark Top & Bottom</h4>
+                    <p id="step2Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">Make small pencil marks at the top and bottom measurements</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-image">
+                        <img src="https://i.imgur.com/placeholder3.jpg" alt="Fold pages" style="width: 100%; border-radius: 10px; margin: 15px 0;">
+                    </div>
+                    <h4 id="step3Title">Fold Both Ends</h4>
+                    <p id="step3Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">Fold both ends of the paper towards the marks you made</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-animation">🔄</div>
+                    <h4 id="step4Title">Repeat Pattern</h4>
+                    <p id="step4Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">Continue this process for each page in your pattern</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <div class="step-animation">✨</div>
+                    <h4 id="step5Title">See Your Design</h4>
+                    <p id="step5Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">Watch your beautiful folded book art emerge</p>
+                </div>
+            </div>
+            
+            <div class="materials-section">
+                <h3>🛠️ <span id="materialsTitle1">What You Need</span></h3>
+                <div class="materials-grid">
+                    <div class="material-item">
+                        <div class="material-item-icon">📚</div>
+                        <div id="mat1">Hardcover Book</div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-item-icon">📏</div>
+                        <div id="mat2">Ruler</div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-item-icon">✏️</div>
+                        <div id="mat3">Pencil</div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-item-icon">📄</div>
+                        <div id="mat4">Pattern</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CUT & FOLD -->
+        <div class="technique-section">
+            <div class="technique-header">
+                <div class="technique-icon">✂️</div>
+                <h2 id="cutFoldTitle">Cut & Fold</h2>
+                <p id="cutFoldDesc">Create dramatic 3D sculptures</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-animation">📖</div>
+                    <h4 id="cutStep1">Prepare Book</h4>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-animation">✏️</div>
+                    <h4 id="cutStep2">Mark Cut Lines</h4>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-animation">✂️</div>
+                    <h4 id="cutStep3">Cut with Scissors</h4>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-animation">🔽</div>
+                    <h4 id="cutStep4">Fold Sections</h4>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <div class="step-animation">🎨</div>
+                    <h4 id="cutStep5">Amazing Result</h4>
+                </div>
+            </div>
+            
+            <div class="materials-section">
+                <h3>🛠️ <span id="materialsTitle2">What You Need</span></h3>
+                <div class="materials-grid">
+                    <div class="material-item">
+                        <div class="material-item-icon">📚</div>
+                        <div id="cutMat1">Hardcover Book</div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-item-icon">✂️</div>
+                        <div id="cutMat2">Sharp Scissors</div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-item-icon">📏</div>
+                        <div id="cutMat3">Metal Ruler</div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-item-icon">🟦</div>
+                        <div id="cutMat4">Cutting Mat</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- COMPARISON -->
+        <div class="comparison">
+            <h3 id="comparisonTitle">Which Technique?</h3>
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <h4>📏 Mark & Fold</h4>
+                    <div class="comparison-item">
+                        <span class="comparison-icon">⭐</span>
+                        <span id="comp1">Beginner Friendly</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span class="comparison-icon">⏱️</span>
+                        <span id="comp2">2-4 Hours</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span class="comparison-icon">🔄</span>
+                        <span id="comp3">Reversible</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span class="comparison-icon">🛡️</span>
+                        <span id="comp4">Very Safe</span>
+                    </div>
+                </div>
+                
+                <div class="comparison-card">
+                    <h4>✂️ Cut & Fold</h4>
+                    <div class="comparison-item">
+                        <span class="comparison-icon">🎯</span>
+                        <span id="comp5">Advanced</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span class="comparison-icon">⏱️</span>
+                        <span id="comp6">4-8 Hours</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span class="comparison-icon">🎨</span>
+                        <span id="comp7">Dramatic 3D</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span class="comparison-icon">✂️</span>
+                        <span id="comp8">Scissors Required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <h3 id="footerTitle">Start Your Book Art Journey</h3>
+            <div class="footer-content">
+                <p>📧 <a href="mailto:contact@liloubooks.com">contact@liloubooks.com</a></p>
+                <p>📱 <a href="tel:+972502534643">050-253-4643</a></p>
+            </div>
+            <div class="social-links">
+                <a href="https://liloubooks.com" target="_blank" rel="noopener noreferrer">
+                    🌐 Website
+                </a>
+                <a href="https://www.instagram.com/liloubooks____/" target="_blank" rel="noopener noreferrer">
+                    📸 Instagram
+                </a>
+            </div>
+            <p style="margin-top: 30px; opacity: 0.7;">© 2025 Lilou Books</p>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                mainTitle: "Book Folding Techniques",
+                subtitle: "Transform Books into Beautiful Art",
+                introTitle: "Two Amazing Techniques",
+                markFoldTitle: "Mark & Fold",
+                markFoldDesc: "Fold pages precisely without cutting",
+                step1Title: "Choose Your Book",
+                step2Title: "Measure & Mark",
+                step3Title: "Fold Pages",
+                step4Title: "Repeat Pattern",
+                step5Title: "See Your Design",
+                materialsTitle1: "What You Need",
+                mat1: "Hardcover Book",
+                mat2: "Ruler",
+                mat3: "Pencil",
+                mat4: "Pattern",
+                cutFoldTitle: "Cut & Fold",
+                cutFoldDesc: "Create dramatic 3D sculptures",
+                cutStep1: "Prepare Book",
+                cutStep2: "Mark Cut Lines",
+                cutStep3: "Cut with Scissors",
+                cutStep4: "Fold Sections",
+                cutStep5: "Amazing Result",
+                materialsTitle2: "What You Need",
+                cutMat1: "Hardcover Book",
+                cutMat2: "Sharp Scissors",
+                cutMat3: "Metal Ruler",
+                cutMat4: "Cutting Mat",
+                comparisonTitle: "Which Technique?",
+                comp1: "Beginner Friendly",
+                comp2: "2-4 Hours",
+                comp3: "Reversible",
+                comp4: "Very Safe",
+                comp5: "Advanced",
+                comp6: "4-8 Hours",
+                comp7: "Dramatic 3D",
+                comp8: "Scissors Required",
+                footerTitle: "Start Your Book Art Journey"
+            },
+            he: {
+                mainTitle: "טכניקות פיסול ספרים",
+                subtitle: "הפכו ספרים לאמנות מרהיבה",
+                introTitle: "שתי טכניקות מדהימות",
+                markFoldTitle: "סימון וקיפול",
+                markFoldDesc: "קיפול דפים במדויק ללא חיתוך",
+                step1Title: "בחרו ספר",
+                step2Title: "מדדו וסמנו",
+                step3Title: "קיפלו דפים",
+                step4Title: "חזרו על התבנית",
+                step5Title: "ראו את העיצוב",
+                materialsTitle1: "מה צריך",
+                mat1: "ספר בכריכה קשה",
+                mat2: "סרגל",
+                mat3: "עיפרון",
+                mat4: "תבנית",
+                cutFoldTitle: "חיתוך וקיפול",
+                cutFoldDesc: "יצרו פסלים תלת מימדיים",
+                cutStep1: "הכינו ספר",
+                cutStep2: "סמנו קווי חיתוך",
+                cutStep3: "חתכו במספריים",
+                cutStep4: "קיפלו חלקים",
+                cutStep5: "תוצאה מדהימה",
+                materialsTitle2: "מה צריך",
+                cutMat1: "ספר בכריכה קשה",
+                cutMat2: "מספריים חדות",
+                cutMat3: "סרגל מתכת",
+                cutMat4: "משטח חיתוך",
+                comparisonTitle: "איזו טכניקה?",
+                comp1: "מתאים למתחילים",
+                comp2: "2-4 שעות",
+                comp3: "הפיך",
+                comp4: "בטוח מאוד",
+                comp5: "מתקדם",
+                comp6: "4-8 שעות",
+                comp7: "תלת מימד דרמטי",
+                comp8: "דורש מספריים",
+                footerTitle: "התחילו את מסע אמנות הספרים"
+            },
+            es: {
+                mainTitle: "Técnicas de Plegado de Libros",
+                subtitle: "Transforma Libros en Arte Hermoso",
+                introTitle: "Dos Técnicas Increíbles",
+                markFoldTitle: "Marcar y Plegar",
+                markFoldDesc: "Plegar páginas con precisión sin cortar",
+                step1Title: "Elige tu Libro",
+                step2Title: "Mide y Marca",
+                step3Title: "Plega Páginas",
+                step4Title: "Repite Patrón",
+                step5Title: "Ve tu Diseño",
+                materialsTitle1: "Lo que Necesitas",
+                mat1: "Libro de Tapa Dura",
+                mat2: "Regla",
+                mat3: "Lápiz",
+                mat4: "Patrón",
+                cutFoldTitle: "Cortar y Plegar",
+                cutFoldDesc: "Crea esculturas 3D dramáticas",
+                cutStep1: "Prepara Libro",
+                cutStep2: "Marca Líneas",
+                cutStep3: "Corta con Tijeras",
+                cutStep4: "Plega Secciones",
+                cutStep5: "Resultado Increíble",
+                materialsTitle2: "Lo que Necesitas",
+                cutMat1: "Libro de Tapa Dura",
+                cutMat2: "Tijeras Afiladas",
+                cutMat3: "Regla de Metal",
+                cutMat4: "Base de Corte",
+                comparisonTitle: "¿Qué Técnica?",
+                comp1: "Para Principiantes",
+                comp2: "2-4 Horas",
+                comp3: "Reversible",
+                comp4: "Muy Seguro",
+                comp5: "Avanzado",
+                comp6: "4-8 Horas",
+                comp7: "3D Dramático",
+                comp8: "Requiere Tijeras",
+                footerTitle: "Comienza tu Viaje de Arte con Libros"
+            },
+            fr: {
+                mainTitle: "Techniques de Pliage de Livres",
+                subtitle: "Transformez les Livres en Art Magnifique",
+                introTitle: "Deux Techniques Incroyables",
+                markFoldTitle: "Marquer et Plier",
+                markFoldDesc: "Plier les pages avec précision sans couper",
+                step1Title: "Choisissez Livre",
+                step2Title: "Mesurer et Marquer",
+                step3Title: "Plier Pages",
+                step4Title: "Répéter Motif",
+                step5Title: "Voir Design",
+                materialsTitle1: "Ce dont Vous Avez Besoin",
+                mat1: "Livre Relié",
+                mat2: "Règle",
+                mat3: "Crayon",
+                mat4: "Modèle",
+                cutFoldTitle: "Couper et Plier",
+                cutFoldDesc: "Créer des sculptures 3D dramatiques",
+                cutStep1: "Préparer Livre",
+                cutStep2: "Marquer Lignes",
+                cutStep3: "Couper avec Ciseaux",
+                cutStep4: "Plier Sections",
+                cutStep5: "Résultat Incroyable",
+                materialsTitle2: "Ce dont Vous Avez Besoin",
+                cutMat1: "Livre Relié",
+                cutMat2: "Ciseaux Tranchants",
+                cutMat3: "Règle Métallique",
+                cutMat4: "Tapis de Découpe",
+                comparisonTitle: "Quelle Technique?",
+                comp1: "Débutant Amical",
+                comp2: "2-4 Heures",
+                comp3: "Réversible",
+                comp4: "Très Sûr",
+                comp5: "Avancé",
+                comp6: "4-8 Heures",
+                comp7: "3D Dramatique",
+                comp8: "Ciseaux Nécessaires",
+                footerTitle: "Commencez Votre Voyage d'Art"
+            }
+        };
+
+        function changeLanguage() {
+            const lang = document.getElementById('languageSelect').value;
+            const t = translations[lang] || translations.en;
+            
+            Object.keys(t).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = t[key];
+                }
+            });
+
+            if (lang === 'he' || lang === 'ar') {
+                document.body.style.direction = 'rtl';
+            } else {
+                document.body.style.direction = 'ltr';
+            }
+        }
+    </script>
+</body>
+</html>
