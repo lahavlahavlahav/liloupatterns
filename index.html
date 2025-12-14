@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Folding Techniques - Lilou Books</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80' font-family='Georgia, serif' font-weight='bold' fill='%23FFB6C1'>L</text></svg>">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Assistant:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&display=swap');
         
         * {
             margin: 0;
@@ -14,7 +15,7 @@
         }
         
         body {
-            font-family: 'Assistant', 'Arial', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
             color: #1a1a1a;
             background: linear-gradient(135deg, #f5f0e8 0%, #ffe8f0 50%, #f8f0e8 100%);
@@ -128,10 +129,11 @@
         }
         
         .technique-header h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cormorant Garamond', serif;
             font-size: 3em;
             color: #1a1a1a;
             margin-bottom: 15px;
+            font-weight: 700;
         }
         
         .technique-header p {
@@ -320,56 +322,110 @@
         }
         
         .footer {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: white;
-            padding: 60px 40px;
+            padding: 80px 40px 40px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '📚';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.05;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         .footer h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5em;
-            margin-bottom: 30px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer h3::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #FFB6C1, transparent);
+            margin: 20px auto;
         }
         
         .footer-content {
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.2em;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
         
         .footer a {
             color: #FFB6C1;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
         
         .footer a:hover {
-            color: #f5f0e8;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 182, 193, 0.8);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
             gap: 30px;
-            margin-top: 30px;
-            font-size: 1.3em;
+            margin-top: 40px;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 1;
         }
 
         .social-links a {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 12px 24px;
-            background: #FFB6C1;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #FFB6C1 0%, #ff9eae 100%);
             color: #1a1a1a;
-            border-radius: 30px;
+            border-radius: 50px;
             transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(255, 182, 193, 0.4);
         }
 
         .social-links a:hover {
-            background: #f5f0e8;
+            background: linear-gradient(135deg, #ff9eae 0%, #FFB6C1 100%);
             transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 182, 193, 0.6);
+            color: #1a1a1a;
+            text-shadow: none;
+        }
+
+        .footer-signature {
+            margin-top: 50px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+            color: #FFB6C1;
+            opacity: 0.9;
+        }
+
+        .footer-copyright {
+            margin-top: 20px;
+            opacity: 0.5;
+            font-size: 0.9em;
+            font-family: 'Montserrat', sans-serif;
         }
         
         @media (max-width: 768px) {
@@ -409,7 +465,8 @@
 
     <div class="container">
         <div class="header">
-            <h1 id="mainTitle">Book Folding Techniques by Lahav Barak</h1>
+            <h1 id="mainTitle">Book Folding Techniques</h1>
+            <div class="by-name">by Lahav Barak</div>
             <p id="subtitle">Transform Books into Beautiful Art</p>
         </div>
         
@@ -500,30 +557,35 @@
                     <div class="step-number">1</div>
                     <div class="step-animation">📖</div>
                     <h4 id="cutStep1">Prepare Book</h4>
+                    <p id="cutStep1Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">Choose a hardcover book and have your cutting pattern ready. Make sure you have a stable surface to work on.</p>
                 </div>
                 
                 <div class="step-card">
                     <div class="step-number">2</div>
                     <div class="step-animation">✏️</div>
                     <h4 id="cutStep2">Mark Cut Lines</h4>
+                    <p id="cutStep2Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">Using your ruler and pencil, carefully mark where you need to cut on each page according to your pattern.</p>
                 </div>
                 
                 <div class="step-card">
                     <div class="step-number">3</div>
                     <div class="step-animation">✂️</div>
                     <h4 id="cutStep3">Cut with Scissors</h4>
+                    <p id="cutStep3Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">Use sharp scissors to carefully cut along the marked lines. Cut slowly and precisely for best results.</p>
                 </div>
                 
                 <div class="step-card">
                     <div class="step-number">4</div>
                     <div class="step-animation">🔽</div>
                     <h4 id="cutStep4">Fold Sections</h4>
+                    <p id="cutStep4Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">After cutting, fold the cut sections according to your pattern to create the 3D effect. Press folds firmly.</p>
                 </div>
                 
                 <div class="step-card">
                     <div class="step-number">5</div>
                     <div class="step-animation">🎨</div>
                     <h4 id="cutStep5">Amazing Result</h4>
+                    <p id="cutStep5Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">Continue through all pages and watch your dramatic 3D book sculpture come to life!</p>
                 </div>
             </div>
             
@@ -541,10 +603,6 @@
                     <div class="material-item">
                         <div class="material-item-icon">📏</div>
                         <div id="cutMat3">Metal Ruler</div>
-                    </div>
-                    <div class="material-item">
-                        <div class="material-item-icon">🟦</div>
-                        <div id="cutMat4">Cutting Mat</div>
                     </div>
                 </div>
             </div>
@@ -609,8 +667,12 @@
                 <a href="https://www.instagram.com/liloubooks____/" target="_blank" rel="noopener noreferrer">
                     📸 Instagram
                 </a>
+                <a href="https://www.etsy.com/shop/LiloubooksArt" target="_blank" rel="noopener noreferrer">
+                    🛍️ Etsy Shop
+                </a>
             </div>
-            <p style="margin-top: 30px; opacity: 0.7;">© 2025 Lilou Books</p>
+            <div class="footer-signature">Lilou Books</div>
+            <p class="footer-copyright">© 2025 Lilou Books - All Rights Reserved</p>
         </div>
     </div>
 
