@@ -89,6 +89,141 @@
             position: relative;
             z-index: 1;
         }
+
+        /* COURSE TEASER STYLES */
+        .course-teaser {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid #FFB6C1;
+            border-bottom: 5px solid #FFB6C1;
+        }
+
+        .course-teaser::before {
+            content: '✨';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.05;
+            top: -50px;
+            left: -50px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .course-teaser::after {
+            content: '📚';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.05;
+            bottom: -50px;
+            right: -50px;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+
+        .course-teaser-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .course-teaser-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFB6C1 0%, #ff9eae 100%);
+            color: #1a1a1a;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .course-teaser h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: white;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .course-teaser-subtitle {
+            color: #FFB6C1;
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .course-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .course-feature {
+            background: rgba(255, 182, 193, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .course-feature:hover {
+            background: rgba(255, 182, 193, 0.2);
+            border-color: #FFB6C1;
+            transform: translateY(-5px);
+        }
+
+        .course-feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .course-feature-title {
+            color: white;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .course-feature-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95em;
+        }
+
+        .course-cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFB6C1 0%, #ff9eae 100%);
+            color: #1a1a1a;
+            padding: 20px 60px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.3em;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(255, 182, 193, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .course-cta-button:hover {
+            background: linear-gradient(135deg, #ff9eae 0%, #FFB6C1 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(255, 182, 193, 0.6);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
         
         .intro {
             padding: 60px 40px;
@@ -121,11 +256,6 @@
             font-size: 4em;
             margin-bottom: 20px;
             animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
         }
         
         .technique-header h2 {
@@ -442,6 +572,12 @@
                 flex-direction: column;
                 align-items: center;
             }
+            .course-teaser h2 {
+                font-size: 2em;
+            }
+            .course-features {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -465,9 +601,46 @@
 
     <div class="container">
         <div class="header">
-            <h1 id="mainTitle">Book Folding Techniques</h1>
-            <div class="by-name">by Lahav Barak</div>
+            <h1 id="mainTitle">Book Folding Techniques by Lahav Barak</h1>
             <p id="subtitle">Transform Books into Beautiful Art</p>
+        </div>
+
+        <!-- COURSE TEASER SECTION -->
+        <div class="course-teaser">
+            <div class="course-teaser-content">
+                <div class="course-teaser-badge" id="courseBadge">🎓 ONLINE COURSE AVAILABLE</div>
+                <h2 id="courseTitle">Master ALL Book Folding Techniques</h2>
+                <p class="course-teaser-subtitle" id="courseSubtitle">
+                    Go from complete beginner to expert book folder with our comprehensive online course
+                </p>
+                
+                <div class="course-features">
+                    <div class="course-feature">
+                        <div class="course-feature-icon">📚</div>
+                        <div class="course-feature-title" id="feature1Title">12 Modules</div>
+                        <div class="course-feature-text" id="feature1Text">Complete curriculum covering everything</div>
+                    </div>
+                    <div class="course-feature">
+                        <div class="course-feature-icon">🎬</div>
+                        <div class="course-feature-title" id="feature2Title">60+ Lessons</div>
+                        <div class="course-feature-text" id="feature2Text">Step-by-step video tutorials</div>
+                    </div>
+                    <div class="course-feature">
+                        <div class="course-feature-icon">✨</div>
+                        <div class="course-feature-title" id="feature3Title">All Techniques</div>
+                        <div class="course-feature-text" id="feature3Text">MMF, Cut & Fold, and more</div>
+                    </div>
+                    <div class="course-feature">
+                        <div class="course-feature-icon">⏱️</div>
+                        <div class="course-feature-title" id="feature4Title">12-Day Access</div>
+                        <div class="course-feature-text" id="feature4Text">Learn at your own pace</div>
+                    </div>
+                </div>
+
+                <a href="https://your-course-link.com" class="course-cta-button" id="courseCTA">
+                    Explore the Full Course →
+                </a>
+            </div>
         </div>
         
         <!-- MARK & FOLD -->
@@ -482,7 +655,7 @@
                 <div class="step-card">
                     <div class="step-number">1</div>
                     <div class="step-image">
-                        <img src="https://raw.githubusercontent.com/lahavlahavlahav/liloupatterns/main/hold%20ruler" alt="Place ruler on book" style="width: 100%; border-radius: 10px; margin: 15px 0;">
+                        <img src="https://raw.githubusercontent.com/lahavlahavlahav/liloupatterns/main/hold%20ruler" alt="Place ruler on book">
                     </div>
                     <h4 id="step1Title">Place Ruler on Right Page</h4>
                     <p id="step1Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">Position your ruler on the right page following the pattern measurements</p>
@@ -491,7 +664,7 @@
                 <div class="step-card">
                     <div class="step-number">2</div>
                     <div class="step-image">
-                        <img src="https://raw.githubusercontent.com/lahavlahavlahav/liloupatterns/main/mark%20top" alt="Mark measurements" style="width: 100%; border-radius: 10px; margin: 15px 0;">
+                        <img src="https://raw.githubusercontent.com/lahavlahavlahav/liloupatterns/main/mark%20top" alt="Mark measurements">
                     </div>
                     <h4 id="step2Title">Mark Top & Bottom</h4>
                     <p id="step2Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">Make small pencil marks at the top and bottom measurements</p>
@@ -500,7 +673,7 @@
                 <div class="step-card">
                     <div class="step-number">3</div>
                     <div class="step-image">
-                        <img src="https://raw.githubusercontent.com/lahavlahavlahav/liloupatterns/main/fold" alt="Fold pages" style="width: 100%; border-radius: 10px; margin: 15px 0;">
+                        <img src="https://raw.githubusercontent.com/lahavlahavlahav/liloupatterns/main/fold" alt="Fold pages">
                     </div>
                     <h4 id="step3Title">Fold Both Ends</h4>
                     <p id="step3Desc" style="color: #666; font-size: 0.95em; margin-top: 10px;">Fold both ends of the paper towards the marks you made</p>
@@ -681,14 +854,30 @@
             en: {
                 mainTitle: "Book Folding Techniques by Lahav Barak",
                 subtitle: "Transform Books into Beautiful Art",
-                introTitle: "Two Amazing Techniques",
+                courseBadge: "🎓 ONLINE COURSE AVAILABLE",
+                courseTitle: "Master ALL Book Folding Techniques",
+                courseSubtitle: "Go from complete beginner to expert book folder with our comprehensive online course",
+                feature1Title: "12 Modules",
+                feature1Text: "Complete curriculum covering everything",
+                feature2Title: "60+ Lessons",
+                feature2Text: "Step-by-step video tutorials",
+                feature3Title: "All Techniques",
+                feature3Text: "MMF, Cut & Fold, and more",
+                feature4Title: "12-Day Access",
+                feature4Text: "Learn at your own pace",
+                courseCTA: "Explore the Full Course →",
                 markFoldTitle: "Mark & Fold",
                 markFoldDesc: "Fold pages precisely without cutting",
-                step1Title: "Choose Your Book",
-                step2Title: "Measure & Mark",
-                step3Title: "Fold Pages",
+                step1Title: "Place Ruler on Right Page",
+                step1Desc: "Position your ruler on the right page following the pattern measurements",
+                step2Title: "Mark Top & Bottom",
+                step2Desc: "Make small pencil marks at the top and bottom measurements",
+                step3Title: "Fold Both Ends",
+                step3Desc: "Fold both ends of the paper towards the marks you made",
                 step4Title: "Repeat Pattern",
+                step4Desc: "Continue this process for each page in your pattern",
                 step5Title: "See Your Design",
+                step5Desc: "Watch your beautiful folded book art emerge",
                 materialsTitle1: "What You Need",
                 mat1: "Hardcover Book",
                 mat2: "Ruler",
@@ -697,15 +886,19 @@
                 cutFoldTitle: "Cut & Fold",
                 cutFoldDesc: "Create dramatic 3D sculptures",
                 cutStep1: "Prepare Book",
+                cutStep1Desc: "Choose a hardcover book and have your cutting pattern ready. Make sure you have a stable surface to work on.",
                 cutStep2: "Mark Cut Lines",
+                cutStep2Desc: "Using your ruler and pencil, carefully mark where you need to cut on each page according to your pattern.",
                 cutStep3: "Cut with Scissors",
+                cutStep3Desc: "Use sharp scissors to carefully cut along the marked lines. Cut slowly and precisely for best results.",
                 cutStep4: "Fold Sections",
+                cutStep4Desc: "After cutting, fold the cut sections according to your pattern to create the 3D effect. Press folds firmly.",
                 cutStep5: "Amazing Result",
+                cutStep5Desc: "Continue through all pages and watch your dramatic 3D book sculpture come to life!",
                 materialsTitle2: "What You Need",
                 cutMat1: "Hardcover Book",
                 cutMat2: "Sharp Scissors",
                 cutMat3: "Metal Ruler",
-                cutMat4: "Cutting Mat",
                 comparisonTitle: "Which Technique?",
                 comp1: "Beginner Friendly",
                 comp2: "2-4 Hours",
@@ -720,14 +913,30 @@
             he: {
                 mainTitle: "טכניקות פיסול ספרים מאת להב ברק",
                 subtitle: "הפכו ספרים לאמנות מרהיבה",
-                introTitle: "שתי טכניקות מדהימות",
+                courseBadge: "🎓 קורס מקוון זמין",
+                courseTitle: "שלטו בכל טכניקות פיסול הספרים",
+                courseSubtitle: "מתחילים מוחלטים למומחים עם הקורס המקיף שלנו",
+                feature1Title: "12 מודולים",
+                feature1Text: "תכנית לימודים מלאה",
+                feature2Title: "60+ שיעורים",
+                feature2Text: "הדרכות וידאו שלב אחר שלב",
+                feature3Title: "כל הטכניקות",
+                feature3Text: "MMF, חיתוך וקיפול, ועוד",
+                feature4Title: "גישה ל-12 יום",
+                feature4Text: "למדו בקצב שלכם",
+                courseCTA: "חקרו את הקורס המלא ←",
                 markFoldTitle: "סימון וקיפול",
                 markFoldDesc: "קיפול דפים במדויק ללא חיתוך",
-                step1Title: "בחרו ספר",
-                step2Title: "מדדו וסמנו",
-                step3Title: "קיפלו דפים",
+                step1Title: "מקמו סרגל על הדף הימני",
+                step1Desc: "מקמו את הסרגל על הדף הימני לפי מידות התבנית",
+                step2Title: "סמנו למעלה ולמטה",
+                step2Desc: "עשו סימוני עיפרון קטנים במידות העליונות והתחתונות",
+                step3Title: "קיפלו את שני הקצוות",
+                step3Desc: "קיפלו את שני קצוות הנייר לכיוון הסימנים שעשיתם",
                 step4Title: "חזרו על התבנית",
+                step4Desc: "המשיכו בתהליך זה עבור כל דף בתבנית",
                 step5Title: "ראו את העיצוב",
+                step5Desc: "צפו באמנות הספר המקופל היפה שלכם מופיעה",
                 materialsTitle1: "מה צריך",
                 mat1: "ספר בכריכה קשה",
                 mat2: "סרגל",
@@ -736,15 +945,19 @@
                 cutFoldTitle: "חיתוך וקיפול",
                 cutFoldDesc: "יצרו פסלים תלת מימדיים",
                 cutStep1: "הכינו ספר",
+                cutStep1Desc: "בחרו ספר בכריכה קשה והכינו את תבנית החיתוך. וודאו שיש לכם משטח עבודה יציב.",
                 cutStep2: "סמנו קווי חיתוך",
+                cutStep2Desc: "השתמשו בסרגל ובעיפרון כדי לסמן בזהירות היכן צריך לחתוך בכל דף לפי התבנית.",
                 cutStep3: "חתכו במספריים",
+                cutStep3Desc: "השתמשו במספריים חדות לחיתוך זהיר לאורך הקווים המסומנים. חתכו לאט ובדיוק לתוצאות הטובות ביותר.",
                 cutStep4: "קיפלו חלקים",
+                cutStep4Desc: "לאחר החיתוך, קיפלו את החלקים החתוכים לפי התבנית כדי ליצור את האפקט התלת מימדי. לחצו חזק על הקיפולים.",
                 cutStep5: "תוצאה מדהימה",
+                cutStep5Desc: "המשיכו דרך כל הדפים וצפו בפסל הספר התלת מימדי המרהיב שלכם מתעורר לחיים!",
                 materialsTitle2: "מה צריך",
                 cutMat1: "ספר בכריכה קשה",
                 cutMat2: "מספריים חדות",
                 cutMat3: "סרגל מתכת",
-                cutMat4: "משטח חיתוך",
                 comparisonTitle: "איזו טכניקה?",
                 comp1: "מתאים למתחילים",
                 comp2: "2-4 שעות",
@@ -755,84 +968,6 @@
                 comp7: "תלת מימד דרמטי",
                 comp8: "דורש מספריים",
                 footerTitle: "התחילו את מסע אמנות הספרים"
-            },
-            es: {
-                mainTitle: "Técnicas de Plegado de Libros",
-                subtitle: "Transforma Libros en Arte Hermoso",
-                introTitle: "Dos Técnicas Increíbles",
-                markFoldTitle: "Marcar y Plegar",
-                markFoldDesc: "Plegar páginas con precisión sin cortar",
-                step1Title: "Elige tu Libro",
-                step2Title: "Mide y Marca",
-                step3Title: "Plega Páginas",
-                step4Title: "Repite Patrón",
-                step5Title: "Ve tu Diseño",
-                materialsTitle1: "Lo que Necesitas",
-                mat1: "Libro de Tapa Dura",
-                mat2: "Regla",
-                mat3: "Lápiz",
-                mat4: "Patrón",
-                cutFoldTitle: "Cortar y Plegar",
-                cutFoldDesc: "Crea esculturas 3D dramáticas",
-                cutStep1: "Prepara Libro",
-                cutStep2: "Marca Líneas",
-                cutStep3: "Corta con Tijeras",
-                cutStep4: "Plega Secciones",
-                cutStep5: "Resultado Increíble",
-                materialsTitle2: "Lo que Necesitas",
-                cutMat1: "Libro de Tapa Dura",
-                cutMat2: "Tijeras Afiladas",
-                cutMat3: "Regla de Metal",
-                cutMat4: "Base de Corte",
-                comparisonTitle: "¿Qué Técnica?",
-                comp1: "Para Principiantes",
-                comp2: "2-4 Horas",
-                comp3: "Reversible",
-                comp4: "Muy Seguro",
-                comp5: "Avanzado",
-                comp6: "4-8 Horas",
-                comp7: "3D Dramático",
-                comp8: "Requiere Tijeras",
-                footerTitle: "Comienza tu Viaje de Arte con Libros"
-            },
-            fr: {
-                mainTitle: "Techniques de Pliage de Livres",
-                subtitle: "Transformez les Livres en Art Magnifique",
-                introTitle: "Deux Techniques Incroyables",
-                markFoldTitle: "Marquer et Plier",
-                markFoldDesc: "Plier les pages avec précision sans couper",
-                step1Title: "Choisissez Livre",
-                step2Title: "Mesurer et Marquer",
-                step3Title: "Plier Pages",
-                step4Title: "Répéter Motif",
-                step5Title: "Voir Design",
-                materialsTitle1: "Ce dont Vous Avez Besoin",
-                mat1: "Livre Relié",
-                mat2: "Règle",
-                mat3: "Crayon",
-                mat4: "Modèle",
-                cutFoldTitle: "Couper et Plier",
-                cutFoldDesc: "Créer des sculptures 3D dramatiques",
-                cutStep1: "Préparer Livre",
-                cutStep2: "Marquer Lignes",
-                cutStep3: "Couper avec Ciseaux",
-                cutStep4: "Plier Sections",
-                cutStep5: "Résultat Incroyable",
-                materialsTitle2: "Ce dont Vous Avez Besoin",
-                cutMat1: "Livre Relié",
-                cutMat2: "Ciseaux Tranchants",
-                cutMat3: "Règle Métallique",
-                cutMat4: "Tapis de Découpe",
-                comparisonTitle: "Quelle Technique?",
-                comp1: "Débutant Amical",
-                comp2: "2-4 Heures",
-                comp3: "Réversible",
-                comp4: "Très Sûr",
-                comp5: "Avancé",
-                comp6: "4-8 Heures",
-                comp7: "3D Dramatique",
-                comp8: "Ciseaux Nécessaires",
-                footerTitle: "Commencez Votre Voyage d'Art"
             }
         };
 
